@@ -31,6 +31,12 @@ int cW(char * s)
     return c;
 }
 
+int toValue(char c)
+{
+    return (c >= 65 &&  c <= 90) ? c : c - 32;
+}
+
+
 int comp(t_words fw, t_words sw)
 {
     int newlen;
@@ -45,13 +51,13 @@ int comp(t_words fw, t_words sw)
         newlen = fw.len;
         while(newlen--)
         {
-            if ((fw.pnt[i] >= 65 &&  fw.pnt[i] <= 90) && (sw.pnt[i] >= 97 &&  sw.pnt[i] <= 122) && (fw.pnt[i] == sw.pnt[i] - 32))
-                i++;
-            else if ((fw.pnt[i] >= 97 &&  fw.pnt[i] <= 122) && (sw.pnt[i] >= 65 &&  sw.pnt[i] <= 90) && (fw.pnt[i] == sw.pnt[i] + 32))
-                i++;
-            else if (fw.pnt[i] < sw.pnt[i])
+            // if ((fw.pnt[i] >= 65 &&  fw.pnt[i] <= 90) && (sw.pnt[i] >= 97 &&  sw.pnt[i] <= 122) && (fw.pnt[i] == sw.pnt[i] - 32))
+            //     i++;
+            // else if ((fw.pnt[i] >= 97 &&  fw.pnt[i] <= 122) && (sw.pnt[i] >= 65 &&  sw.pnt[i] <= 90) && (fw.pnt[i] == sw.pnt[i] + 32))
+            //     i++;
+            if (toValue(fw.pnt[i]) < toValue(sw.pnt[i]))
                 return 1;
-            else if (fw.pnt[i] > sw.pnt[i])
+            else if (toValue(fw.pnt[i]) > toValue(sw.pnt[i]))
                 return 0;
             else
             {
