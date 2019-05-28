@@ -56,7 +56,7 @@ void *dequeue(struct s_queue *queue)
     }
     else 
     {
-        if (&queue->first != &queue->last)
+        if (queue->first != queue->last)
         {
             cont = queue->first->content;  
             tmp = queue->first;
